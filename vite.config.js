@@ -4,5 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [      tailwindcss(),   react()],
+  // user/organization GitHub Pages sites are served from the domain root
+  base: '/',
+  plugins: [tailwindcss(), react()],
 })
