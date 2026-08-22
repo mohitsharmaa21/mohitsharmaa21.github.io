@@ -31,6 +31,19 @@ export const certificates = [
   },
   {
     id: 3,
+    title: "AI-Integrated Management of NEXT-GEN Software Testing",
+    issuer: "SWAYAM",
+    platform: "Manipal University Jaipur & IIM Bangalore",
+    date: "July 30, 2026",
+    credentialId: "RJ060201630 (Score: 98.5%)",
+    image: "/assets/certificates/swayam_software_testing.jpg",
+    link: "https://swayam.gov.in/",
+    colorStart: "#ea580c", // Orange / Amber-Gold
+    colorEnd: "#7c2d12",
+    accentColor: "#fb923c",
+  },
+  {
+    id: 4,
     title: "Data Analytics Essentials",
     issuer: "Cisco",
     platform: "Cisco Networking Academy",
@@ -43,7 +56,7 @@ export const certificates = [
     accentColor: "#60a5fa",
   },
   {
-    id: 4,
+    id: 5,
     title: "AWS Redshift Migration",
     issuer: "Databricks",
     platform: "Databricks Academy",
@@ -56,7 +69,7 @@ export const certificates = [
     accentColor: "#f43f5e",
   },
   {
-    id: 5,
+    id: 6,
     title: "Microsoft SQL Migration",
     issuer: "Databricks",
     platform: "Databricks Academy",
@@ -69,7 +82,7 @@ export const certificates = [
     accentColor: "#a78bfa",
   },
   {
-    id: 6,
+    id: 7,
     title: "Python",
     issuer: "oneroadmap",
     platform: "One Roadmap",
@@ -82,7 +95,7 @@ export const certificates = [
     accentColor: "#34d399",
   },
   {
-    id: 7,
+    id: 8,
     title: "Frontend Development",
     issuer: "oneroadmap",
     platform: "One Roadmap",
@@ -95,7 +108,7 @@ export const certificates = [
     accentColor: "#818cf8",
   },
   {
-    id: 8,
+    id: 9,
     title: "Artificial Intelligence Fundamentals",
     issuer: "IBM",
     platform: "IBM SkillsBuild",
@@ -108,7 +121,7 @@ export const certificates = [
     accentColor: "#f472b6",
   },
   {
-    id: 9,
+    id: 10,
     title: "Data Analyst",
     issuer: "oneroadmap",
     platform: "One Roadmap",
