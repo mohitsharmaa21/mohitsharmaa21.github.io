@@ -117,7 +117,7 @@ export default function Leadership() {
 
               <div className="flex items-center gap-3 text-gray-300 text-sm mt-4 bg-white/5 p-3 rounded-xl border border-white/10 w-fit">
                 <FaCalendarAlt className="text-cyan-400" />
-                <span>1 Year & 4 Months</span>
+                <span>1 Year & 5 Months</span>
               </div>
             </div>
 

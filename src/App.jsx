@@ -79,12 +79,12 @@ export default function App() {
               </div>
               <div className="flex items-center gap-3">
                  <a
-                  href="https://drive.google.com/file/d/1F28YWbQ8FCX3h6HqAeioSUXSOWRLb82A/view?usp=drive_link"
+                  href="/Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-1.5 rounded-full text-xs font-semibold text-black bg-cyan-400 hover:bg-cyan-300 transition-all cursor-pointer"
                 >
-                  Open in Drive
+                  Open PDF ↗
                 </a>
                 <button
                   onClick={() => setIsResumeOpen(false)}
@@ -100,7 +100,7 @@ export default function App() {
             {/* Body */}
             <div className="flex-1 bg-black/40 relative">
               <iframe
-                src="https://drive.google.com/file/d/1F28YWbQ8FCX3h6HqAeioSUXSOWRLb82A/preview"
+                src="/Resume.pdf"
                 className="w-full h-full border-0"
                 allow="autoplay"
                 title="Resume Preview"
