@@ -98,12 +98,36 @@ const paperImages = [
   }
 ];
 
-const aicImages = [
+const mujHackathonImages = [
   {
-    url: "/assets/achievements/aic_incubation_letter.jpg",
-    title: "AIC Pre-Incubation Sanction Letter",
-    desc: "Official sanction letter for startup 'Pixellyrics' from AIC MUJ Incubation Foundation.",
-    badge: "AIC Sanction Letter"
+    url: "/assets/achievements/muj_hackathon_dean_award.jpg",
+    title: "Award Felicitation by Associate Dean",
+    desc: "Receiving the Hackathon award and medal from Dr. Roheet Bhatnagar, Associate Dean of Manipal University Jaipur.",
+    badge: "Felicitation Ceremony"
+  },
+  {
+    url: "/assets/achievements/muj_hackathon_dome.jpg",
+    title: "MUJ Iconic Dome Showcase",
+    desc: "Holding the official Certificate of Appreciation and bronze medal in front of the Manipal University Jaipur dome.",
+    badge: "Campus Showcase"
+  },
+  {
+    url: "/assets/achievements/muj_hackathon_team.jpg",
+    title: "Winning Team with Associate Dean",
+    desc: "Posing alongside Dr. Roheet Bhatnagar with the team holding certificates and medals.",
+    badge: "Team Felicitation"
+  },
+  {
+    url: "/assets/achievements/muj_hackathon_medal.jpg",
+    title: "Medal Pinning Ceremony",
+    desc: "Dr. Roheet Bhatnagar presenting the bronze medal to Mohit Sharma for securing 3rd position.",
+    badge: "Medal Ceremony"
+  },
+  {
+    url: "/assets/achievements/muj_hackathon_certificate.jpg",
+    title: "Official Certificate of Appreciation & Medal",
+    desc: "Certificate awarded to Mohit Sharma by Director DSW, Dean Student Welfare, and Registrar for securing 3rd Position in MUJ Hackathon.",
+    badge: "Certificate & Medal"
   }
 ];
 
@@ -135,6 +159,15 @@ const ecellImages = [
 ];
 
 const achievementsList = [
+  {
+    icon: <FaTrophy className="text-3xl text-amber-400" />,
+    title: "3rd Position in MUJ Hackathon",
+    event: "Hackathon Competition, Manipal University Jaipur",
+    location: "Manipal University Jaipur, India",
+    date: "2026",
+    desc: "Secured Third Position in the university-wide Hackathon. Felicitated with bronze medal and certificate by Dr. Roheet Bhatnagar, Associate Dean of MUJ.",
+    glow: "rgba(245, 158, 11, 0.2)",
+  },
   {
     icon: <FaTrophy className="text-3xl text-yellow-400" />,
     title: "Hackathon Winner",
@@ -180,15 +213,6 @@ const achievementsList = [
     desc: "Successfully qualified two distinct startup concepts for early validation and acceleration.",
     glow: "rgba(59, 130, 246, 0.15)",
   },
-  {
-    icon: <FaLightbulb className="text-3xl text-pink-400" />,
-    title: "Startup Pre-Incubation (AIC)",
-    event: "Atal Incubation Centre (AIC-MUJ)",
-    location: "MUJ Atal Incubation Center, jaipur",
-    date: "2026",
-    desc: "Pre-incubated a novel startup idea targeting real-world application domains.",
-    glow: "rgba(244, 114, 182, 0.15)",
-  },
 ];
 
 const flipVariants = {
@@ -218,11 +242,11 @@ const flipVariants = {
 };
 
 export default function Achievements() {
-  const [activeGallery, setActiveGallery] = useState(null); // 'hackathon' | 'innovation' | null
+  const [activeGallery, setActiveGallery] = useState(null); // 'muj' | 'hackathon' | 'innovation' | null
   const [activeImgIdx, setActiveImgIdx] = useState(0);
   const [direction, setDirection] = useState(1);
 
-  const currentImages = activeGallery === "hackathon" ? hackathonImages : activeGallery === "innovation" ? innovationImages : activeGallery === "ntce" ? ntceImages : activeGallery === "paper" ? paperImages : activeGallery === "aic" ? aicImages : activeGallery === "ecell" ? ecellImages : [];
+  const currentImages = activeGallery === "muj" ? mujHackathonImages : activeGallery === "hackathon" ? hackathonImages : activeGallery === "innovation" ? innovationImages : activeGallery === "ntce" ? ntceImages : activeGallery === "paper" ? paperImages : activeGallery === "ecell" ? ecellImages : [];
 
   const handleNav = (newIdx, dir) => {
     setDirection(dir);
@@ -384,23 +408,23 @@ export default function Achievements() {
                 </div>
 
                 <div>
-                  {/* Preview Glimpse Button for Hackathon, Innovation, NTCE, Academic Papers, E-Cell, and AIC cards */}
-                  {(ach.title === "Hackathon Winner" || 
+                  {/* Preview Glimpse Button for All 6 Cards */}
+                  {(ach.title === "3rd Position in MUJ Hackathon" ||
+                    ach.title === "Hackathon Winner" || 
                     ach.title === "2nd Prize Innovation Award" || 
                     ach.title === "94.68 Percentile in NTCE" ||
                     ach.title === "Academic Papers Published" ||
-                    ach.title === "Double E-Cell Incubation" ||
-                    ach.title === "Startup Pre-Incubation (AIC)") && (
+                    ach.title === "Double E-Cell Incubation") && (
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveGallery(
+                          ach.title === "3rd Position in MUJ Hackathon" ? "muj" :
                           ach.title === "Hackathon Winner" ? "hackathon" : 
                           ach.title === "2nd Prize Innovation Award" ? "innovation" : 
                           ach.title === "94.68 Percentile in NTCE" ? "ntce" : 
                           ach.title === "Academic Papers Published" ? "paper" : 
-                          ach.title === "Double E-Cell Incubation" ? "ecell" :
-                          "aic"
+                          "ecell"
                         );
                         setActiveImgIdx(0);
                       }}
@@ -494,10 +518,8 @@ export default function Achievements() {
                     <img
                       src={currentImages[activeImgIdx].url}
                       alt={currentImages[activeImgIdx].title}
-                      className="max-h-[65vh] max-w-full object-contain rounded-2xl shadow-2xl border border-white/10"
+                      className="max-h-[68vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl border border-white/10"
                       loading="lazy"
-                      width="800"
-                      height="600"
                     />
                   </motion.div>
                 </AnimatePresence>
