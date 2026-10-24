@@ -84,7 +84,7 @@ const patentsData = [
     title: "TBNDG: Trust-Based Malicious Node Detection System for Grey-Hole Attacks in Vehicular Ad Hoc Networks (VANETs)",
     applicationNo: "202611039350 A",
     filingDate: "2026",
-    publicationDate: "2026",
+    publicationDate: "08/08/2026",
     journal: "Indian Patent Office Publication",
     applicant: "Manipal University Jaipur",
     inventors: ["Mohit Sharma"],
