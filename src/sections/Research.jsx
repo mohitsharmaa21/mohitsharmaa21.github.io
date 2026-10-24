@@ -124,16 +124,6 @@ const flipVariants = {
   }),
 };
 
-function getGlowGradient(glow) {
-  if (glow === "cyan") {
-    return "conic-gradient(from 0deg, #06b6d4, #00f2fe, #06b6d4, #0052d4, #06b6d4)";
-  }
-  if (glow === "purple") {
-    return "conic-gradient(from 0deg, #a855f7, #f43f5e, #a855f7, #6366f1, #a855f7)";
-  }
-  return "conic-gradient(from 0deg, #10b981, #34d399, #10b981, #059669, #10b981)";
-}
-
 export default function Research() {
   const [selectedPaper, setSelectedPaper] = useState(null);
   const [activeGallery, setActiveGallery] = useState(null); // 'icracs', 'digital_twin', or null

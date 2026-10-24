@@ -66,7 +66,7 @@ export default function Projects() {
         kaggle: "https://www.kaggle.com/code/mohitsharma7231/demand-forecasting-sarimax-model"
       },
     ],
-    [isMobile]
+    []
   );
 
   const sceneRef = React.useRef(null); 
@@ -75,7 +75,7 @@ export default function Projects() {
     offset: ["start start", "end end"], 
   });
 
-  const thresholds = projects.map((_, i) => (i + 1) / projects.length); 
+  const thresholds = React.useMemo(() => projects.map((_, i) => (i + 1) / projects.length), [projects]); 
   const [activeIndex, setActiveIndex] = React.useState(0); 
 
   React.useEffect(() => {

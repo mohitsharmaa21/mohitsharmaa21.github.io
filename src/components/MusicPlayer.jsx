@@ -50,13 +50,6 @@ const MusicPlayer = () => {
     audio.addEventListener("canplay", onCanPlay);
   };
 
-  const playTrack = (index) => {
-    setCurrentTrackIndex(index);
-    setIsPlaying(true);
-    setInfoText("Double-click to shuffle");
-    setSourceAndMaybePlay(playlist[index], true);
-  };
-
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;

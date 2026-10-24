@@ -45,17 +45,21 @@ const Home = React.forwardRef((props, ref) => {
   // typing effect logic
   useEffect(() => {
     const current = roles[index];
+    let pauseTimeout;
     const timeout = setTimeout(() => {
       if (!deleting && subIndex < current.length) setSubIndex((v) => v + 1);
       else if (!deleting && subIndex === current.length)
-        setTimeout(() => setDeleting(true), 1200);
+        pauseTimeout = setTimeout(() => setDeleting(true), 1200);
       else if (deleting && subIndex > 0) setSubIndex((v) => v - 1);
       else if (deleting && subIndex === 0) {
         setDeleting(false);
         setIndex((p) => (p + 1) % roles.length);
       }
     }, deleting ? 40 : 60);
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      clearTimeout(pauseTimeout);
+    };
   }, [subIndex, deleting, index, roles]);
 
   return (

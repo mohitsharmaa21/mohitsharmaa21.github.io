@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaLightbulb, FaRocket, FaUserTie, FaChevronLeft, FaChevronRight, FaTimes, FaSearchPlus, FaSyncAlt } from "react-icons/fa";
 
@@ -110,36 +110,38 @@ export default function StartupJourney() {
     setCards((prev) => [...prev.slice(1), prev[0]]);
   };
 
-  const showMoment = (idx) => {
+  const showMoment = useCallback((idx) => {
     setCards((prev) => {
       const idxPos = prev.indexOf(idx);
       if (idxPos === -1) return prev;
       return [...prev.slice(idxPos), ...prev.slice(0, idxPos)];
     });
-  };
+  }, []);
 
-  const handleLightboxNav = (newIdx, dir) => {
+  const handleLightboxNav = useCallback((newIdx, dir) => {
     setDirection(dir);
     setLightboxIdx(newIdx);
     showMoment(newIdx); // Sync background stack order
-  };
+  }, [showMoment]);
 
   // Keyboard navigation for lightbox
   useEffect(() => {
+    if (lightboxIdx === null) return;
+
     const handleKeyDown = (e) => {
       if (e.key === "Escape") setLightboxIdx(null);
-      if (e.key === "ArrowRight" && lightboxIdx !== null) {
+      if (e.key === "ArrowRight") {
         const nextIdx = (lightboxIdx + 1) % startupMoments.length;
         handleLightboxNav(nextIdx, 1);
       }
-      if (e.key === "ArrowLeft" && lightboxIdx !== null) {
+      if (e.key === "ArrowLeft") {
         const prevIdx = (lightboxIdx - 1 + startupMoments.length) % startupMoments.length;
         handleLightboxNav(prevIdx, -1);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxIdx]);
+  }, [lightboxIdx, handleLightboxNav]);
 
   return (
     <section

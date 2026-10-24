@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight, FaTimes, FaCertificate, FaExternalLinkAlt } from "react-icons/fa";
 import { certificates } from "../data/certificates";

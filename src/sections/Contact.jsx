@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 import ParticlesBackground from "../components/ParticlesBackground.jsx";
 import Astra from "../assets/Astra.png";
 import { FaLinkedinIn, FaGithub, FaEnvelope, FaPhone, FaFileLines } from "react-icons/fa6";
