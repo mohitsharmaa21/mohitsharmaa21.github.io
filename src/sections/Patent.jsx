@@ -87,7 +87,7 @@ const patentsData = [
     publicationDate: "08/08/2026",
     journal: "Indian Patent Office Publication",
     applicant: "Manipal University Jaipur",
-    inventors: ["Mohit Sharma"],
+    inventors: ["Dr Rekha Jain", "Netra Jain", "Mohit Sharma"],
     classification: "VANETs Network Security, Intelligent Transport Systems",
     domains: ["Vehicular Ad Hoc Networks", "V2V Communication", "Connected Vehicles", "Grey-Hole Attack Mitigation"],
     description:
