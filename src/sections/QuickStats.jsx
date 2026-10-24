@@ -26,9 +26,9 @@ const stats = [
   },
   {
     icon: <FaFileAlt className="text-3xl text-amber-400" />,
-    label: "Published Patent",
-    value: "Indian Patent Published",
-    desc: "VANETs Grey-Hole Detection",
+    label: "Published Patents",
+    value: "2 Indian Patents Published",
+    desc: "Quantum Cryptography & VANETs",
     glow: "rgba(251, 191, 36, 0.15)",
   },
   {
