@@ -138,11 +138,69 @@ export default function Patent() {
     setIsModalZoomed(false);
   };
 
+  // Smooth continuous low-sliding ticker for patent inventors
+  const renderInventorsTicker = (inventors) => {
+    if (inventors.length <= 1) {
+      return (
+        <span className="text-gray-200 text-xs font-medium block mt-1">
+          <span className="text-cyan-300 font-bold bg-cyan-500/20 px-2 py-0.5 rounded border border-cyan-500/35">
+            ★ {inventors[0]}
+          </span>
+        </span>
+      );
+    }
+
+    const inventorGroup = (
+      <span className="inline-flex items-center gap-2">
+        {inventors.map((name, i) => (
+          <React.Fragment key={i}>
+            {i > 0 && <span className="text-gray-500 text-[10px]">•</span>}
+            {name === "Mohit Sharma" ? (
+              <span className="text-cyan-300 font-bold bg-cyan-500/25 px-2 py-0.5 rounded-md border border-cyan-400/40 shadow-[0_0_10px_rgba(6,182,212,0.25)]">
+                ★ Mohit Sharma
+              </span>
+            ) : (
+              <span className="text-gray-200 font-medium">{name}</span>
+            )}
+          </React.Fragment>
+        ))}
+      </span>
+    );
+
+    return (
+      <div className="relative w-full overflow-hidden mt-1 py-0.5 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+        <div
+          className="inline-flex items-center gap-4 whitespace-nowrap text-xs font-medium cursor-default select-none"
+          style={{
+            animation: "patent-names-slide 14s linear infinite",
+            display: "inline-flex",
+            willChange: "transform",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.animationPlayState = "paused")}
+          onMouseLeave={(e) => (e.currentTarget.style.animationPlayState = "running")}
+          title={`Inventors: ${inventors.join(", ")} (Hover to pause)`}
+        >
+          {inventorGroup}
+          <span className="text-emerald-400/80 font-bold text-xs mx-1">✦</span>
+          {inventorGroup}
+          <span className="text-emerald-400/80 font-bold text-xs mx-1">✦</span>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <section
       id="patent"
       className="relative py-24 bg-black text-white overflow-hidden w-full flex flex-col items-center justify-center border-t border-white/5"
     >
+      <style>{`
+        @keyframes patent-names-slide {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
+
       {/* Background ambient neon glow behind the patent showcase */}
       <div className="absolute inset-0 pointer-events-none">
         <div
@@ -337,13 +395,18 @@ export default function Patent() {
                         </span>
                       </div>
 
-                      <div className="col-span-2 sm:col-span-1 bg-white/5 p-3 rounded-xl border border-white/10">
-                        <span className="text-[10px] text-gray-400 block font-medium uppercase tracking-wider">
-                          Inventors
-                        </span>
-                        <span className="text-gray-200 text-xs font-medium line-clamp-1 mt-0.5" title={activePatent.inventors.join(", ")}>
-                          {activePatent.inventors.join(", ")}
-                        </span>
+                      <div className="col-span-2 sm:col-span-1 bg-white/5 p-3 rounded-xl border border-white/10 overflow-hidden">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] text-gray-400 block font-medium uppercase tracking-wider">
+                            Inventors
+                          </span>
+                          {activePatent.inventors.length > 1 && (
+                            <span className="text-[8px] font-mono text-cyan-400 bg-cyan-400/10 px-1 py-0.2 rounded border border-cyan-400/20">
+                              Auto-scroll
+                            </span>
+                          )}
+                        </div>
+                        {renderInventorsTicker(activePatent.inventors)}
                       </div>
                     </div>
 
