@@ -16,6 +16,8 @@ import {
   FaBuilding,
   FaEye,
   FaBookOpen,
+  FaSearchPlus,
+  FaSearchMinus,
 } from "react-icons/fa";
 
 const patentsData = [
@@ -123,11 +125,17 @@ export default function Patent() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [viewMode, setViewMode] = useState("spotlight"); // 'spotlight' | 'split'
   const [modalPatent, setModalPatent] = useState(null);
+  const [isModalZoomed, setIsModalZoomed] = useState(false);
 
   const activePatent = patentsData[activeIdx];
 
   const handleSwap = () => {
     setActiveIdx((prev) => (prev === 0 ? 1 : 0));
+  };
+
+  const handleOpenModal = (patent) => {
+    setModalPatent(patent);
+    setIsModalZoomed(false);
   };
 
   return (
@@ -369,7 +377,7 @@ export default function Patent() {
                   <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-white/10">
                     {activePatent.hasLocalPreview ? (
                       <motion.button
-                        onClick={() => setModalPatent(activePatent)}
+                        onClick={() => handleOpenModal(activePatent)}
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-xs sm:text-sm text-white border border-emerald-500/40 cursor-pointer shadow-lg relative overflow-hidden group/btn"
                         style={{
                           background: "linear-gradient(135deg, rgba(16,185,129,0.3), rgba(6,182,212,0.2))",
@@ -379,10 +387,7 @@ export default function Patent() {
                         whileTap={{ scale: 0.97 }}
                       >
                         <FaEye className="text-emerald-300 text-sm" />
-                        <span>Preview Official Gazette</span>
-                        <span className="text-[10px] bg-emerald-400/20 text-emerald-200 px-1.5 py-0.5 rounded font-mono">
-                          HD
-                        </span>
+                        <span>Preview Patent Document</span>
                       </motion.button>
                     ) : (
                       <motion.a
@@ -558,11 +563,11 @@ export default function Patent() {
                 <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-2">
                   {p.hasLocalPreview ? (
                     <button
-                      onClick={() => setModalPatent(p)}
+                      onClick={() => handleOpenModal(p)}
                       className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-emerald-500/20 border border-emerald-500/40 hover:bg-emerald-500/30 transition-all flex items-center gap-1.5 cursor-pointer"
                     >
                       <FaEye size={12} />
-                      <span>Preview Gazette</span>
+                      <span>Preview Patent Document</span>
                     </button>
                   ) : (
                     <a
@@ -572,7 +577,7 @@ export default function Patent() {
                       className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-purple-500/20 border border-purple-500/40 hover:bg-purple-500/30 transition-all flex items-center gap-1.5"
                     >
                       <FaExternalLinkAlt size={11} />
-                      <span>Preview Document</span>
+                      <span>Preview Patent Document</span>
                     </a>
                   )}
 
@@ -586,32 +591,32 @@ export default function Patent() {
         )}
       </div>
 
-      {/* Official Gazette Lightbox Modal Viewer */}
+      {/* Official Patent Document Lightbox Modal Viewer */}
       <AnimatePresence>
         {modalPatent && (
           <motion.div
-            className="fixed inset-0 z-[300] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-6"
+            className="fixed inset-0 z-[300] flex items-center justify-center bg-black/90 backdrop-blur-md p-2 sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setModalPatent(null)}
           >
             <motion.div
-              className="relative w-full max-w-4xl max-h-[92vh] overflow-hidden rounded-3xl border border-white/15 shadow-2xl bg-[#090615] flex flex-col"
+              className="relative w-full max-w-4xl max-h-[94vh] overflow-hidden rounded-3xl border border-white/15 shadow-2xl bg-[#090615] flex flex-col"
               initial={{ scale: 0.92, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.92, y: 20 }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
-              <div className="flex items-center justify-between p-4 sm:p-5 border-b border-white/10 bg-white/[0.03]">
+              <div className="flex items-center justify-between p-3.5 sm:p-5 border-b border-white/10 bg-white/[0.03]">
                 <div className="flex items-center gap-2.5">
                   <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
                     <FaAtom />
                   </div>
                   <div>
                     <h4 className="text-sm sm:text-base font-bold text-white leading-tight">
-                      Official Patent Gazette Publication
+                      Official Patent Document
                     </h4>
                     <p className="text-[11px] text-gray-400 font-mono">
                       Application No: {modalPatent.applicationNo} • Published: {modalPatent.publicationDate}
@@ -620,15 +625,25 @@ export default function Patent() {
                 </div>
 
                 <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setIsModalZoomed(!isModalZoomed)}
+                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer"
+                    title={isModalZoomed ? "Fit document to window" : "Zoom to full document width"}
+                  >
+                    {isModalZoomed ? <FaSearchMinus size={11} /> : <FaSearchPlus size={11} />}
+                    <span>{isModalZoomed ? "Fit View" : "Full Zoom"}</span>
+                  </button>
+
                   <a
                     href={modalPatent.previewPdf}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-white bg-cyan-500/20 border border-cyan-500/40 hover:bg-cyan-500/30 transition-all"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-white bg-cyan-500/20 border border-cyan-500/40 hover:bg-cyan-500/30 transition-all"
                   >
                     <FaFileAlt size={11} />
                     <span>Open PDF ↗</span>
                   </a>
+
                   <button
                     onClick={() => setModalPatent(null)}
                     className="p-2.5 rounded-full bg-white/5 hover:bg-white/15 text-gray-300 hover:text-white transition-all cursor-pointer"
@@ -638,17 +653,21 @@ export default function Patent() {
                 </div>
               </div>
 
-              {/* Modal Scrollable Image Viewport */}
-              <div className="overflow-y-auto max-h-[calc(92vh-130px)] p-4 sm:p-6 bg-black/60 flex items-center justify-center">
+              {/* Modal Scrollable Image Viewport - starts cleanly at top (y=0) without cutoffs */}
+              <div className="overflow-y-auto max-h-[calc(94vh-130px)] p-2 sm:p-5 bg-black/85 flex flex-col items-center justify-start">
                 {modalPatent.previewImage ? (
                   <img
                     src={modalPatent.previewImage}
                     alt={modalPatent.title}
-                    className="max-w-full h-auto rounded-xl shadow-2xl border border-white/10"
-                    loading="lazy"
+                    className={`${
+                      isModalZoomed
+                        ? "w-full max-w-3xl h-auto"
+                        : "max-w-full max-h-[72vh] sm:max-h-[76vh] w-auto h-auto object-contain"
+                    } rounded-xl shadow-2xl border border-white/10 mx-auto block transition-all duration-200`}
+                    loading="eager"
                   />
                 ) : (
-                  <p className="text-gray-400 text-sm">Preview document link is external.</p>
+                  <p className="text-gray-400 text-sm py-8">Preview document link is external.</p>
                 )}
               </div>
 
@@ -657,14 +676,22 @@ export default function Patent() {
                 <span className="truncate mr-2">
                   {modalPatent.journal}
                 </span>
-                <a
-                  href={modalPatent.previewPdf}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="sm:hidden text-cyan-300 font-semibold"
-                >
-                  Open PDF ↗
-                </a>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setIsModalZoomed(!isModalZoomed)}
+                    className="sm:hidden text-emerald-400 font-semibold"
+                  >
+                    {isModalZoomed ? "Fit View" : "Full Zoom"}
+                  </button>
+                  <a
+                    href={modalPatent.previewPdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-cyan-300 font-semibold hover:underline"
+                  >
+                    Download PDF ↗
+                  </a>
+                </div>
               </div>
             </motion.div>
           </motion.div>
