@@ -14,7 +14,7 @@ const publications = [
     status: "Presented & publishing soon",
     glow: "cyan",
     abstract: "The rapid pace of urbanization has increased interest in creating Smart Cities as a means of addressing sustainability and improving infrastructure efficiency, and urban service delivery. With the increasing dominance of data-driven intelligence through Machine Learning (ML) in Smart City applications including transportation, energy management, public safety, health care, environmental sensing, and citizen participation this review presents an analytical synthesis of a number of ML enabled smart cities by providing information about the major applications, challenges, and research directions. Some of the primary challenges associated with these new ML-enabled Smart Cities include privacy of data, AI algorithmic bias, lack of explainable algorithms, the scalability of the algorithms, time constraints on real-time performance, interoperability, and governance issues. Additionally, this article also discusses future opportunities for using federated learning, edge artificial intelligence, explainable artificial intelligence, digital twins etc. and compares various ML-related techniques and emerging urban domains to identify gaps in the research and discovery pathways to build trustworthy, resilient, sustainable Smart City systems.",
-    previewLink: "ADD_PAPER_PREVIEW_URL",
+    previewLink: "https://digital-library.theiet.org/doi/10.1049/icp.2026.4000",
   },
   {
     id: 2,
@@ -318,28 +318,46 @@ export default function Research() {
  
                     {/* Paper Preview Link (3rd button) */}
                     {pub.previewLink && (
-                      <button
-                        onClick={() => {
-                          if (pub.previewLink === "ADD_PAPER_PREVIEW_URL") {
+                      pub.previewLink === "ADD_PAPER_PREVIEW_URL" ? (
+                        <button
+                          type="button"
+                          onClick={() => {
                             alert("Paper preview link will be added here once published!");
-                          } else {
-                            window.open(pub.previewLink, "_blank", "noopener,noreferrer");
-                          }
-                        }}
-                        className={`w-full py-2.5 rounded-md border text-xs font-bold uppercase tracking-wider text-center transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98] ${
-                          pub.glow === "cyan"
-                            ? "border-cyan-400/40 bg-cyan-500/5 text-cyan-400 hover:text-cyan-300 hover:border-cyan-400 hover:bg-cyan-500/15 hover:shadow-[0_0_12px_rgba(6,182,212,0.35)]"
-                            : pub.glow === "purple"
-                            ? "border-purple-400/40 bg-purple-500/5 text-purple-400 hover:text-purple-300 hover:border-purple-400 hover:bg-purple-500/15 hover:shadow-[0_0_12px_rgba(168,85,247,0.35)]"
-                            : "border-emerald-400/40 bg-emerald-500/5 text-emerald-400 hover:text-emerald-300 hover:border-emerald-400 hover:bg-emerald-500/15 hover:shadow-[0_0_12px_rgba(16,185,129,0.35)]"
-                        }`}
-                      >
-                        <span>Paper Preview</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <line x1="7" y1="17" x2="17" y2="7"/>
-                          <polyline points="7 7 17 7 17 17"/>
-                        </svg>
-                      </button>
+                          }}
+                          className={`w-full py-2.5 rounded-md border text-xs font-bold uppercase tracking-wider text-center transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98] ${
+                            pub.glow === "cyan"
+                              ? "border-cyan-400/40 bg-cyan-500/5 text-cyan-400 hover:text-cyan-300 hover:border-cyan-400 hover:bg-cyan-500/15 hover:shadow-[0_0_12px_rgba(6,182,212,0.35)]"
+                              : pub.glow === "purple"
+                              ? "border-purple-400/40 bg-purple-500/5 text-purple-400 hover:text-purple-300 hover:border-purple-400 hover:bg-purple-500/15 hover:shadow-[0_0_12px_rgba(168,85,247,0.35)]"
+                              : "border-emerald-400/40 bg-emerald-500/5 text-emerald-400 hover:text-emerald-300 hover:border-emerald-400 hover:bg-emerald-500/15 hover:shadow-[0_0_12px_rgba(16,185,129,0.35)]"
+                          }`}
+                        >
+                          <span>Paper Preview</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"/>
+                            <polyline points="7 7 17 7 17 17"/>
+                          </svg>
+                        </button>
+                      ) : (
+                        <a
+                          href={pub.previewLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`w-full py-2.5 rounded-md border text-xs font-bold uppercase tracking-wider text-center transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98] ${
+                            pub.glow === "cyan"
+                              ? "border-cyan-400/40 bg-cyan-500/5 text-cyan-400 hover:text-cyan-300 hover:border-cyan-400 hover:bg-cyan-500/15 hover:shadow-[0_0_12px_rgba(6,182,212,0.35)]"
+                              : pub.glow === "purple"
+                              ? "border-purple-400/40 bg-purple-500/5 text-purple-400 hover:text-purple-300 hover:border-purple-400 hover:bg-purple-500/15 hover:shadow-[0_0_12px_rgba(168,85,247,0.35)]"
+                              : "border-emerald-400/40 bg-emerald-500/5 text-emerald-400 hover:text-emerald-300 hover:border-emerald-400 hover:bg-emerald-500/15 hover:shadow-[0_0_12px_rgba(16,185,129,0.35)]"
+                          }`}
+                        >
+                          <span>Paper Preview</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"/>
+                            <polyline points="7 7 17 7 17 17"/>
+                          </svg>
+                        </a>
+                      )
                     )}
                   </div>
 
@@ -420,6 +438,23 @@ export default function Research() {
                   <span className="text-white font-medium">{selectedPaper.date}</span>
                 </div>
               </div>
+
+              {selectedPaper.previewLink && selectedPaper.previewLink !== "ADD_PAPER_PREVIEW_URL" && (
+                <div className="mt-4 pt-4 border-t border-white/10">
+                  <a
+                    href={selectedPaper.previewLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 rounded-md border border-cyan-400/40 bg-cyan-500/15 text-cyan-300 hover:bg-cyan-500/25 hover:border-cyan-300 text-xs font-bold uppercase tracking-wider text-center transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.25)] active:scale-[0.98]"
+                  >
+                    <span>Read Published Paper</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"/>
+                      <polyline points="7 7 17 7 17 17"/>
+                    </svg>
+                  </a>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}
