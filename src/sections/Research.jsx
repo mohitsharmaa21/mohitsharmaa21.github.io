@@ -11,7 +11,7 @@ const publications = [
     conference: "ICRACS 2026 – 3rd International Conference on Recent Advances in Artificial Intelligence, Computer Vision, and Smart Systems",
     location: "Poornima Institute of Engineering and Technology(PIET), Jaipur, Rajasthan, India",
     date: "April 17 – 18, 2026",
-    status: "Presented & publishing soon",
+    status: "Presented & Published",
     glow: "cyan",
     abstract: "The rapid pace of urbanization has increased interest in creating Smart Cities as a means of addressing sustainability and improving infrastructure efficiency, and urban service delivery. With the increasing dominance of data-driven intelligence through Machine Learning (ML) in Smart City applications including transportation, energy management, public safety, health care, environmental sensing, and citizen participation this review presents an analytical synthesis of a number of ML enabled smart cities by providing information about the major applications, challenges, and research directions. Some of the primary challenges associated with these new ML-enabled Smart Cities include privacy of data, AI algorithmic bias, lack of explainable algorithms, the scalability of the algorithms, time constraints on real-time performance, interoperability, and governance issues. Additionally, this article also discusses future opportunities for using federated learning, edge artificial intelligence, explainable artificial intelligence, digital twins etc. and compares various ML-related techniques and emerging urban domains to identify gaps in the research and discovery pathways to build trustworthy, resilient, sustainable Smart City systems.",
     previewLink: "https://digital-library.theiet.org/doi/10.1049/icp.2026.4000",
@@ -252,8 +252,10 @@ export default function Research() {
                 : "group-hover:border-emerald-500/50 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.25)]";
 
             const badgeColor =
-              pub.status === "Presented & publishing soon"
+              pub.glow === "cyan"
                 ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
+                : pub.glow === "purple"
+                ? "bg-purple-500/10 text-purple-400 border border-purple-500/20"
                 : "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
 
             return (
